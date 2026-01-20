@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>FIFO Page Replacement Simulation</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <h1>FIFO Page Replacement Simulation</h1>
+
+    <label
+      >Frame Size: <input type="number" id="frameSize" value="1" min="1"
+    /></label>
+    <label
+      >Number of Frames: <input type="number" id="numFrames" value="3" min="1"
+    /></label>
+    <button onclick="initialize()">Initialize</button>
+
+    <hr />
+
+    <label
+      >Page Number:
+      <input type="number" id="pageInput" min="1" />
+    </label>
+    <button onclick="loadPage()">Load Page (FIFO)</button>
+
+    <hr />
+
+    <!-- Step-by-step sequence input -->
+    <label
+      >Sequence (comma-separated):
+      <input type="text" id="sequenceInput" placeholder="e.g. 1,2,3,4,1"
+    /></label>
+    <button onclick="prepareSequence()">Load Sequence</button>
+    <br />
+    <button onclick="prevStep()">Previous</button>
+    <button onclick="nextStep()">Next</button>
+    <span id="stepIndicator"></span>
+    <audio id="hitSound" src="hit.mp3" preload="auto"></audio>
+    <audio id="faultSound" src="fault.mp3" preload="auto"></audio>
+
+    <h3>Frames:</h3>
+    <div class="frame-box" id="framesView"></div>
+
+    <div class="stats" id="stats"></div>
+    <div class="log" id="log"></div>
+    <button onclick="downloadLog()">Download Log</button>
+
+    <!-- Segmentation inputs -->
+    <h3>Segmentation</h3>
+    <label>Segment Number: <input id="segmentInput" type="number" min="0" max="3"/></label>
+    <label>Offset: <input id="offsetInput" type="number" min="0" /></label>
+    <button onclick="calculatePhysicalAddress()">Calculate Physical Address</button> </br></br>
+
+    <hr />
+
+    <!-- Chart and table for page statistics -->
+    <div class="chart-table">
+      <h3>Page Statistics Chart</h3>
+      <canvas id="chartCanvas" width="550" height="350"></canvas>
+
+      <hr/>
+
+      <button onclick="togglePageTable()">Show Page Table</button>
+
+      <div id="pageTableContainer">
+        <h3>Page Table</h3>
+        <table id="pageTable">
+          <thead>
+            <tr>
+              <th>Logical Page</th>
+              <th>Frame Number</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <hr/>
+
+      <button onclick="toggleSegmentationTable()">
+        Show Segmentation Table
+      </button>
+
+      <div id="segmentationTableContainer">
+        <h3>Segmentation Table</h3>
+        <table id="segmentationTable">
+          <thead>
+            <tr>
+              <th>Segment</th>
+              <th>Base</th>
+              <th>Limit</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+    <hr /> 
+    <div class="btn-container">
+      <a class="btn" href="frontpage.html">Back to Home</a>
+      <a class="btn" href="LRU.html">Go to LRU Simulation</a>
+    <script>
+      window.onload = () => {
+        setAlgorithm("FIFO");
+      };
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>

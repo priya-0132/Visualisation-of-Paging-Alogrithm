@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Virtual Memory Manager</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <h1>Paging Algorithm visualization</h1>
+
+    <label>Frame Size: <input type="number" id="frameSize" value="1" min="1" /></label>
+    <label>Number of Frames: <input type="number" id="numFrames" value="3" min="1" /></label>
+    <button onclick="initialize()">Initialize</button>
+
+    <hr />
+
+    <!-- Inputs for manual page loading -->
+    <label>Page Number: <input type="number" id="pageInput" /></label>
+    <select id="algo">
+      <option value="FIFO">FIFO</option>
+      <option value="LRU">LRU</option>
+    </select>
+    <button onclick="loadPage()">Load Page</button>
+
+    <hr />
+
+    <!-- Segmentation simulation section -->
+    <h3>Segmentation</h3>
+    <label>Segment Number: <input type="number" id="segmentNum" /></label>
+    <label>Offset: <input type="number" id="offsetVal" /></label>
+    <button onclick="loadSegment()">Load Segment</button>
+    <div class="log" id="segmentLog"></div>
+
+    <!-- Reset and sequence input -->
+    <button onclick="resetMemory()">Reset</button>
+    <br /><br />
+    <label>Sequence (comma-separated): <input type="text" id="sequenceInput" /></label>
+    <button onclick="loadSequence()">Load Sequence</button>
+
+    <!-- Visualization of memory frames -->
+    <h3>Frames:</h3>
+    <div class="frame-box" id="framesView"></div>
+
+    <!-- Displaying stats and logs -->
+    <div class="stats" id="stats"></div>
+    <div class="log" id="log"></div>
+    <button onclick="downloadLog()">Download Log</button>
+
+    <!-- Canvas element for chart visualization -->
+    <h3>Page Statistics Chart</h3>
+    <canvas id="chartCanvas" width="400" height="200"></canvas>
+
+    <!-- Link to external JS -->
+    <script src="script.js"></script>
+  </body>
+</html>
